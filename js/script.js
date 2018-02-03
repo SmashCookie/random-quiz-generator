@@ -20,10 +20,17 @@ function generateRandomQuiz() {
 
 // Generates a list from random chosen questions from the question list
 function generateRandomQuestions() {
+    //Resets the current list of questions every time the generateRandomQuestions is called
+    randomQuizList = [];
     let questionList = getQuestionList();
     for (var i = 0; i < 5; i++) {
-        randomQuizList.push(questionList[i]);
+        let number = Math.floor(Math.random()*questionList.length);
+        randomQuizList.push(questionList[number]);
     }
+}
+
+function checkForDuplicateQuestion(question) {
+
 }
 
 //Holds the long array of avalible questions
