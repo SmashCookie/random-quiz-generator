@@ -11,11 +11,38 @@
 
 <body>
     <div class="container jumbotron">
-        <h1 class="display-4">The Random Quiz Game!</h1>
-        <br>
-        <p>
-            <span class="question"></span>
-        </p>
+        <div class="header text-center">
+            <h1 class="display-4">The Random Quiz Game!</h1>
+            <button class="btn btn-info">Generate a new quiz!</button>
+        </div>
+
+        <br><br>
+
+        <div class="quiz">
+            <p>
+                <span class="question lead">Question 1</span>
+                <input type="text" class="answer form-control form-control-lg" placeholder="Your answer here">
+            </p>
+            <p>
+                <span class="question lead">Question 2</span>
+                <input type="text" class="answer form-control form-control-lg" placeholder="Your answer here">
+            </p>
+            <p>
+                <span class="question lead">Question 3</span>
+                <input type="text" class="answer form-control form-control-lg" placeholder="Your answer here">
+            </p>
+            <p>
+                <span class="question lead">Question 4</span>
+                <input type="text" class="answer form-control form-control-lg" placeholder="Your answer here">
+            </p>
+            <p>
+                <span class="question lead">Question 5</span>
+                <input type="text" class="answer form-control form-control-lg" placeholder="Your answer here">
+            </p>
+            <p class="text-center">
+                <button class="btn btn-primary">Check answers</button>
+            </p>
+        </div>
     </div>
     <script src="js/script.js"></script>
 </body>
