@@ -10,6 +10,7 @@ let randomQuizList = [];
 //Generates the quiz
 function generateRandomQuiz() {
     generateRandomQuestions();
+    resetQuiz();
     let questions = randomQuizList;
     let questionOuput = getQuestionSpans();
     console.log(randomQuizList);
@@ -23,44 +24,58 @@ function generateRandomQuestions() {
     //Resets the current list of questions every time the generateRandomQuestions is called
     randomQuizList = [];
     let questionList = getQuestionList();
+
     // The issue with this loop is that it might generate duplicate questions
     // TODO: Fix this issue
-    for (var i = 0; i < 5; i++) {
+
+    // Speeds up the loop
+    const l = 5;
+    let i;
+    for (i = 0; i < l; i++) {
         let number = Math.floor(Math.random()*questionList.length);
         randomQuizList.push(questionList[number]);
     }
 }
 
+// TODO: Make this function legit
 function checkForDuplicateQuestion(question) {
 
 }
 
-//Holds the long array of avalible questions
-function getQuestionList() {
-    const questionList = [
-        {question: "Name the largest freshwater lake in the world:",answer: "lake superior"},
-        {question: "Where would you find the sea of Tranquility?",answer: "the moon"},
-        {question: "What is another word for lexicon?",answer: "dictionary"},
-        {question: "Name the seventh (7th) planet from the sun:",answer: "uranus"},
-        {question: "What is the worlds biggest island?",answer: "greenland"},
-        {question: "What is the capital of Spain?",answer: "madrid"},
-        {question: "What is the capital of Norway?",answer: "Oslo"},
-        {question: "What is the capital of Sweden?",answer: "stockholm"},
-        {question: "What year was William Shakespeare born?",answer: "1564"}
-    ];
-    return questionList;
-}
-
 // When the users decides to, checks if the answers is the right one.
 function checkIfAnswersAreCorrect() {
-    let answers = getAnswerInputs();
+    const output = getCorrectAnswerSpans();
+    const answers = getAnswerInputs();
     for (var i = 0; i < randomQuizList.length; i++) {
-        let answer = answers[i].value;
+        const answer = answers[i].value;
         if (answer.toLowerCase() === randomQuizList[i].answer) {
             console.log("Correct answer at position: " + i)
+            answers[i].style.backgroundColor = "lawngreen";
         } else {
             console.log("Wrong answer at position: " + i)
+            answers[i].style.backgroundColor = "red";
+            output[i].textContent += "The correct answer was: " + randomQuizList[i].answer;
         }
+    }
+}
+
+// Resets the input fields when the user generates a new quiz
+function resetQuiz() {
+    const inputs = getAnswerInputs();
+    const correctAnswerSpans = getCorrectAnswerSpans();
+
+    let current;
+    let span;
+
+    //Speeds up the loop
+    const l = inputs.length
+    let i;
+    for (i = 0; i < l; i++) {
+        current = inputs[i];
+        span = correctAnswerSpans[i];
+        current.value = "";
+        current.style.backgroundColor = "white";
+        span.textContent = "";
     }
 }
 
@@ -74,4 +89,44 @@ function getQuestionSpans() {
 function getAnswerInputs() {
     const Input = document.querySelectorAll(".answer");
     return Input;
+}
+
+function getCorrectAnswerSpans() {
+    const span = document.querySelectorAll(".correctAnswer");
+    return span;
+}
+
+//Holds the long array of avalible questions
+function getQuestionList() {
+    const questionList = [
+        {question: "Name the largest freshwater lake in the world:",answer: "lake superior"},
+        {question: "Where would you find the sea of Tranquility?",answer: "the moon"},
+        {question: "What is another word for lexicon?",answer: "dictionary"},
+        {question: "Name the seventh (7th) planet from the sun:",answer: "uranus"},
+        {question: "What is the worlds biggest island?",answer: "greenland"},
+        {question: "What is the capital of Spain?",answer: "madrid"},
+        {question: "What is the capital of Norway?",answer: "oslo"},
+        {question: "What is the capital of Sweden?",answer: "stockholm"},
+        {question: "What year was William Shakespeare born?",answer: "1564"},
+        {question: "When did the cold war end?",answer: "1989"},
+        {question: "When did the first world war begin?",answer: "1914"},
+        {question: "When did the first world war end?",answer: "1918"},
+        {question: "When did the second world war begin?",answer: "1939"},
+        {question: "When did the second world war end?",answer: "1954"},
+        {question: "When did Margaret Thatcher become Prime Minister of Britain?",answer: "1979"},
+        {question: "Who was the first president of the USA?",answer: "george washington"},
+        {question: "In which city was the Titanic built?",answer: "belfast"},
+        {question: "Which war was ended by the signing the armistice on July 27 th, 1953?",answer: "the korean war"},
+        {question: "Which country sent its navy around the world to fight the Japanese in 1904?",answer: "russia"},
+        {question: "What is the national animal of China?",answer: "panda"},
+        {question: "What is the noisiest city in the world?",answer: "hong kong"},
+        {question: "Which country did once have the name Rhodesia?",answer: "zimbabwe"},
+        {question: "What island, which belonged to Denmark, was independent in 1944?",answer: "island"},
+        {question: "What is the largest state of the United States?",answer: "alaska"},
+        {question: "On which continent can you visit Sierra Leone?",answer: "africa"},
+        {question: "What do the Japanese people call their own country?",answer: "nippon"},
+        {question: "What is the largest city in Canada?",answer: "toronto"},
+        {question: "What is the capital city of Australia?",answer: "canberra"}
+    ];
+    return questionList;
 }
