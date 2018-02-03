@@ -54,7 +54,7 @@ function checkIfAnswersAreCorrect() {
         } else {
             console.log("Wrong answer at position: " + i)
             answers[i].style.backgroundColor = "red";
-            output[i].textContent += "The correct answer was: " + randomQuizList[i].answer;
+            output[i].textContent = "The correct answer was: " + randomQuizList[i].answer;
         }
     }
 }
