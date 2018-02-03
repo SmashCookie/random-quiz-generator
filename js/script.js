@@ -23,6 +23,8 @@ function generateRandomQuestions() {
     //Resets the current list of questions every time the generateRandomQuestions is called
     randomQuizList = [];
     let questionList = getQuestionList();
+    // The issue with this loop is that it might generate duplicate questions
+    // TODO: Fix this issue
     for (var i = 0; i < 5; i++) {
         let number = Math.floor(Math.random()*questionList.length);
         randomQuizList.push(questionList[number]);
