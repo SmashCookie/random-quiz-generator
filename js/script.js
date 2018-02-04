@@ -10,6 +10,7 @@ let randomQuizList = [];
 function generateRandomQuiz() {
     generateRandomQuestions();
     resetQuiz();
+    displayQuiz();
     let questions = randomQuizList;
     let questionOuput = getQuestionSpans();
     for (var i = 0; i < 5; i++) {
@@ -47,10 +48,8 @@ function checkIfAnswersAreCorrect() {
     for (var i = 0; i < randomQuizList.length; i++) {
         const answer = answers[i].value;
         if (answer.toLowerCase() === randomQuizList[i].answer) {
-            console.log("Correct answer at position: " + i)
             answers[i].style.backgroundColor = "lawngreen";
         } else {
-            console.log("Wrong answer at position: " + i)
             answers[i].style.backgroundColor = "red";
             output[i].textContent = "The correct answer was: " + randomQuizList[i].answer;
         }
@@ -75,6 +74,11 @@ function resetQuiz() {
         current.style.backgroundColor = "white";
         span.textContent = "";
     }
+}
+
+function displayQuiz() {
+    const quizDiv = document.querySelector("div .quiz");
+    quizDiv.classList.remove("hidden");
 }
 
 // Gets the HTML tags that will later shows the random chosen question
