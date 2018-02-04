@@ -1,6 +1,5 @@
 const generateBtn = document.querySelector(".header .btn");
 const checkAnswersBtn = document.querySelector(".quiz .btn");
-
 generateBtn.addEventListener("click", generateRandomQuiz);
 checkAnswersBtn.addEventListener("click", checkIfAnswersAreCorrect);
 
@@ -39,11 +38,6 @@ function generateRandomQuestions() {
         currentNumbers.push(number);
         randomQuizList.push(questionList[number]);
     }
-}
-
-// TODO: Make this function legit
-function checkForDuplicateQuestion(question) {
-
 }
 
 // When the users decides to, checks if the answers is the right one.
@@ -116,7 +110,7 @@ function getQuestionList() {
         {question: "When did the first world war begin?",answer: "1914"},
         {question: "When did the first world war end?",answer: "1918"},
         {question: "When did the second world war begin?",answer: "1939"},
-        {question: "When did the second world war end?",answer: "1954"},
+        {question: "When did the second world war end?",answer: "1945"},
         {question: "When did Margaret Thatcher become Prime Minister of Britain?",answer: "1979"},
         {question: "Who was the first president of the USA?",answer: "george washington"},
         {question: "In which city was the Titanic built?",answer: "belfast"},
