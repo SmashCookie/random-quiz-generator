@@ -13,7 +13,6 @@ function generateRandomQuiz() {
     resetQuiz();
     let questions = randomQuizList;
     let questionOuput = getQuestionSpans();
-    console.log(randomQuizList);
     for (var i = 0; i < 5; i++) {
         questionOuput[i].textContent = randomQuizList[i].question;
     }
@@ -24,15 +23,20 @@ function generateRandomQuestions() {
     //Resets the current list of questions every time the generateRandomQuestions is called
     randomQuizList = [];
     let questionList = getQuestionList();
-
-    // The issue with this loop is that it might generate duplicate questions
-    // TODO: Fix this issue
+    let currentNumbers = [];
 
     // Speeds up the loop
-    const l = 5;
     let i;
-    for (i = 0; i < l; i++) {
+    let j;
+    for (i = 0; i < 5; i++) {
         let number = Math.floor(Math.random()*questionList.length);
+        for(j = 0; j < currentNumbers.length; j++) {
+            // Quick Duplicate check
+            if (currentNumbers[j] === number) {
+                number = Math.floor(Math.random()*questionList.length);
+            }
+        }
+        currentNumbers.push(number);
         randomQuizList.push(questionList[number]);
     }
 }
