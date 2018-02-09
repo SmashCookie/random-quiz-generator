@@ -36,6 +36,13 @@ function generateRandomQuestions() {
                 number = Math.floor(Math.random()*questionList.length);
             }
         }
+        // Double duplicate check... (Will fix this later)
+        for(j = 0; j < currentNumbers.length; j++) {
+            // Quick Duplicate check
+            if (currentNumbers[j] === number) {
+                number = Math.floor(Math.random()*questionList.length);
+            }
+        }
         currentNumbers.push(number);
         randomQuizList.push(questionList[number]);
     }
