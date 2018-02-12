@@ -11,19 +11,34 @@ function generateRandomQuiz() {
     generateRandomQuestions();
     resetQuiz();
     displayQuiz();
-    let questions = randomQuizList;
-    let questionOuput = getQuestionSpans();
-    for (var i = 0; i < 5; i++) {
+    const questions = randomQuizList;
+    const questionOuput = getQuestionSpans();
+    for (let i = 0; i < 5; i++) {
         questionOuput[i].textContent = randomQuizList[i].question;
     }
 }
 
+// When the users decides to, checks if the answers is the right one.
+function checkIfAnswersAreCorrect() {
+    const output = getCorrectAnswerSpans();
+    const answers = getAnswerInputs();
+    for (let i = 0; i < randomQuizList.length; i++) {
+        const answer = answers[i].value;
+        if (answer.toLowerCase() === randomQuizList[i].answer) {
+            answers[i].style.backgroundColor = "lawngreen";
+        } else {
+            answers[i].style.backgroundColor = "red";
+            output[i].textContent = "The correct answer was: " + randomQuizList[i].answer;
+        }
+    }
+}
+
 // Generates a list from random chosen questions from the question list
-function generateRandomQuestions() {
+const generateRandomQuestions = () => {
     //Resets the current list of questions every time the generateRandomQuestions is called
     randomQuizList = [];
-    let questionList = getQuestionList();
-    let currentNumbers = [];
+    const questionList = getQuestionList();
+    const currentNumbers = [];
 
     // Speeds up the loop
     let i;
@@ -48,23 +63,8 @@ function generateRandomQuestions() {
     }
 }
 
-// When the users decides to, checks if the answers is the right one.
-function checkIfAnswersAreCorrect() {
-    const output = getCorrectAnswerSpans();
-    const answers = getAnswerInputs();
-    for (var i = 0; i < randomQuizList.length; i++) {
-        const answer = answers[i].value;
-        if (answer.toLowerCase() === randomQuizList[i].answer) {
-            answers[i].style.backgroundColor = "lawngreen";
-        } else {
-            answers[i].style.backgroundColor = "red";
-            output[i].textContent = "The correct answer was: " + randomQuizList[i].answer;
-        }
-    }
-}
-
 // Resets the input fields when the user generates a new quiz
-function resetQuiz() {
+const resetQuiz = () => {
     const inputs = getAnswerInputs();
     const correctAnswerSpans = getCorrectAnswerSpans();
 
@@ -83,30 +83,30 @@ function resetQuiz() {
     }
 }
 
-function displayQuiz() {
+const displayQuiz = () => {
     const quizDiv = document.querySelector("div .quiz");
     quizDiv.classList.remove("hidden");
 }
 
 // Gets the HTML tags that will later shows the random chosen question
-function getQuestionSpans() {
+const getQuestionSpans = () => {
     const span = document.querySelectorAll(".question");
     return span;
 }
 
 // Get the answer inputs to check if the user has answered the question correctly
-function getAnswerInputs() {
+const getAnswerInputs = () => {
     const Input = document.querySelectorAll(".answer");
     return Input;
 }
 
-function getCorrectAnswerSpans() {
+const getCorrectAnswerSpans = () => {
     const span = document.querySelectorAll(".correctAnswer");
     return span;
 }
 
 //Holds the long array of avalible questions
-function getQuestionList() {
+const getQuestionList = () => {
     const questionList = [
         {question: "Name the largest freshwater lake in the world:",answer: "lake superior"},
         {question: "Where would you find the sea of Tranquility?",answer: "the moon"},
