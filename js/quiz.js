@@ -5,7 +5,7 @@ const correctAnswerSpan = document.querySelectorAll(".correctAnswer");
 const checkAnswersBtn = document.querySelector(".quiz .btn");
 
 const quiz = {
-    //Generates the quiz
+    // Generates the quiz
     generateQuiz: () => {
         quiz.resetQuiz();
         quiz.generateRandomQuestions();
@@ -13,49 +13,48 @@ const quiz = {
         quiz.show();
     },
 
-    //Resets the input fields and colors
+    // Resets the input fields and colors
     resetQuiz: () => {
         for (let i = 0; i < inputs.length; i++){
             correctAnswerSpan[i].textContent = "";
             inputs[i].value = "";
             inputs[i].style.backgroundColor = "white";
-
         }
     },
 
     // Generates 5 random questions out of the many found in the questionList
     generateRandomQuestions: () => {
-        //Resets the currentList
+        // Resets the currentList
         quiz.currentList = [];
         let number;
-        //Generates 5 questions
+        // Generates 5 questions
         for (let i = 0; i < 5; i++) {
             number = Math.floor(Math.random()*quiz.questionList.length);
-            //Quickly checks for duplicate. However, this might create another duplicate.
+            // Quickly checks for duplicate. However, this might create another duplicate.
             for(let j = 0; j < quiz.currentList.length; j++){
                 if (quiz.currentList[j].question === quiz.questionList[number].question ){
                     number = Math.floor(Math.random() * quiz.questionList.length);
                 }
             }
-            //Pushes the current question object to the currentList array
+            // Pushes the current question object to the currentList array
             quiz.currentList.push(quiz.questionList[number]);
         }
     },
 
-    //Adds the questions text to the page
+    // Adds the questions text to the page
     displayQuiz: () => {
         for (let i = 0; i < 5; i++) {
             questionSpans[i].textContent = quiz.currentList[i].question;
         }
     },
 
-    //Removes the hidden class from the quiz div element, and shows the questions and input fields to the user.
+    // Removes the hidden class from the quiz div element, and shows the questions and input fields to the user.
     show: () => {
         const div = document.querySelector(".quiz");
         div.classList.remove("hidden");
     },
 
-    //Empty array where the selected question objects will be pushed to.
+    // Empty array where the selected question objects will be pushed to.
     currentList: [],
 
     // List of avalible questions and answers
