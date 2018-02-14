@@ -1,8 +1,8 @@
-const startButton = document.querySelector(".header button");
-const checkAnswersBtn = document.querySelector(".quiz .btn");
+const startButton = document.querySelector(".header .btn");
 const questionSpans = document.querySelectorAll(".question");
-const correctAnswerSpan = document.querySelectorAll(".correctAnswer");
 const inputs = document.querySelectorAll(".answer");
+const correctAnswerSpan = document.querySelectorAll(".correctAnswer");
+const checkAnswersBtn = document.querySelector(".quiz .btn");
 
 const quiz = {
     //Generates the quiz
