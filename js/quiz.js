@@ -5,7 +5,6 @@
     *
     * Author @Christian Halvorsen
 */
-
 const questionSpans = document.querySelectorAll(".question");
 const inputs = document.querySelectorAll(".answer");
 const correctAnswerSpan = document.querySelectorAll(".correctAnswer");
@@ -18,6 +17,7 @@ const quiz = {
         GenerateNewQuizBtn.addEventListener("click", quiz.generateQuiz);
         checkAnswersBtn.addEventListener("click", quiz.checkIfAnswersAreCorrect);
     },
+
     // Generates the quiz
     generateQuiz: () => {
         quiz.resetQuiz();
